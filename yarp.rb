@@ -2,14 +2,12 @@ class Yarp < Formula
   desc "Yet Another Robot Platform"
   homepage "http://yarp.it"
 
-  url "https://github.com/robotology/yarp/archive/v2.3.66.tar.gz"
-  sha256 "d6a086620e0d947cf1634d14b99e2409c03ee93c56b4021c886e4c9fae9cbbb2"
+  stable do
+    url "https://github.com/robotology/yarp/archive/v2.3.66.tar.gz"
+    sha256 "d6a086620e0d947cf1634d14b99e2409c03ee93c56b4021c886e4c9fae9cbbb2"
+  end
 
   bottle do
-    revision 1
-    sha256 "de4e5f034538991b5184c7030f79a44cb4bd76f7d4cbd2385c9e4141ea44803a" => :yosemite
-    sha256 "658267b21ae11c68b5247c8826f2cf5ad504791d16e1eeee445801294410bc92" => :mavericks
-    sha256 "23dc0cb343be352df00207063314257f8c3eef8ee4f4622005f5183423799d8d" => :mountain_lion
   end
 
   head do
