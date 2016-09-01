@@ -32,7 +32,6 @@ class GazeboYarpPlugins < Formula
   end
 
   test do
-
     (testpath/"test.sh").write <<-EOS.undent
       #!/bin/bash
       yarp namespace /brew_test
