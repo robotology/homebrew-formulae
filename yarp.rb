@@ -10,6 +10,7 @@ class Yarp < Formula
   bottle do
     root_url "https://github.com/robotology/yarp/releases/download/v2.3.68"
     sha256 "a0d2a61339cdc12fd096cfece9928478d63e20af60955d38de664c43a2efa3dc" => :sierra
+    sha256 "cf4fb2a481e2c32a25ef307bf581997f971001c918c2ee4411a5f913c0574349" => :el_capitan
   end
 
   head do
