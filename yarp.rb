@@ -3,11 +3,13 @@ class Yarp < Formula
   homepage "http://yarp.it"
 
   stable do
-    url "https://github.com/robotology/yarp/archive/v2.3.66.1.tar.gz"
-    sha256 "a8f805d1eddc320be53cee341ce807b33515154041bd29f7e6208c5be2275545"
+    url "https://github.com/robotology/yarp/archive/v2.3.68.tar.gz"
+    sha256 "17659779d2b4e66836267011d086f2023b515b986468d777b94f7d56451c07cf"
   end
 
   bottle do
+    root_url "https://github.com/robotology/yarp/releases/download/v2.3.68"
+    sha256 "a0d2a61339cdc12fd096cfece9928478d63e20af60955d38de664c43a2efa3dc" => :sierra
   end
 
   head do
@@ -21,9 +23,8 @@ class Yarp < Formula
 
   depends_on "pkg-config" => :build
   depends_on "cmake" => :build
+  depends_on "eigen" => :build
   depends_on "ace"
-  depends_on "gsl"
-  depends_on "readline"
   depends_on "jpeg"
   depends_on "homebrew/science/opencv" => :optional
   depends_on "qt5" => :recommended
