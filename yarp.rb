@@ -3,14 +3,13 @@ class Yarp < Formula
   homepage "http://yarp.it"
 
   stable do
-    url "https://github.com/robotology/yarp/archive/v2.3.68.tar.gz"
-    sha256 "17659779d2b4e66836267011d086f2023b515b986468d777b94f7d56451c07cf"
+    url "https://github.com/robotology/yarp/archive/v2.3.68.1.tar.gz"
+    sha256 "17eafeed8cc5ca37e3c003527ad60ca133314bd6e9b1455ec7b6f5dbfa95567c"
   end
 
   bottle do
-    root_url "https://github.com/robotology/yarp/releases/download/v2.3.68"
-    sha256 "a0d2a61339cdc12fd096cfece9928478d63e20af60955d38de664c43a2efa3dc" => :sierra
-    sha256 "cf4fb2a481e2c32a25ef307bf581997f971001c918c2ee4411a5f913c0574349" => :el_capitan
+    root_url "https://github.com/robotology/yarp/releases/download/v2.3.68.1"
+    sha256 "cdfceec0da0766384b80d96d0d82b2822510e5584ae46ae5ed05748f8c161d7f" => :sierra
   end
 
   head do
@@ -33,8 +32,6 @@ class Yarp < Formula
     depends_on "lua"
     depends_on "swig"
     depends_on :python
-
-
   end
 
   def install
