@@ -8,6 +8,8 @@ class Yarp < Formula
   end
 
   bottle do
+    root_url "https://github.com/robotology/yarp/releases/download/v2.3.70"
+    sha256 "1cd2b385a3d33b55e13fef61c8438507a94d4b6aaf9cc67d13228183a58a5bc7" => :sierra
   end
 
   head do
@@ -36,14 +38,14 @@ class Yarp < Formula
     args = std_cmake_args + %w[
       -DCREATE_LIB_MATH:BOOL=TRUE
       -DCREATE_DEVICE_LIBRARY_MODULES:BOOL=TRUE
-      -DENABLE_YARPRUN_LOG:BOOL=TRUE
+      -DENABLE_YARPRUN_LOG:BOOL=FALSE
       -DCREATE_OPTIONAL_CARRIERS:BOOL=TRUE
-      -DENABLE_yarpcar_mjpeg_carrier:BOOL=TRUE
-      -DENABLE_yarpcar_rossrv_carrier:BOOL=TRUE
-      -DENABLE_yarpcar_tcpros_carrier:BOOL=TRUE
-      -DENABLE_yarpcar_xmlrpc_carrier:BOOL=TRUE
-      -DENABLE_yarpcar_bayer_carrier:BOOL=TRUE
-      -DENABLE_yarpcar_priority_carrier:BOOL=TRUE
+      -DENABLE_yarpcar_mjpeg:BOOL=TRUE
+      -DENABLE_yarpcar_rossrv:BOOL=TRUE
+      -DENABLE_yarpcar_tcpros:BOOL=TRUE
+      -DENABLE_yarpcar_xmlrpc:BOOL=TRUE
+      -DENABLE_yarpcar_bayer:BOOL=TRUE
+      -DENABLE_yarpcar_priority:BOOL=TRUE
     ]
 
     args << "-DCREATE_GUIS:BOOL=TRUE" if build.with? "qt"

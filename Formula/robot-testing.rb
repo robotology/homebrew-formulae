@@ -7,6 +7,12 @@ class RobotTesting < Formula
     sha256 "d5147e190647b576c0219759467dfc7663a8262672cb8ef5209a7c455488b2e4"
   end
 
+  bottle do
+    root_url "https://github.com/robotology/robot-testing/releases/download/v1.2.0"
+    cellar :any
+    sha256 "760b71849b83ab2f9075aef4df9594521373ece5863421ea5f3e693e1358bdf3" => :sierra
+  end
+
   head do
     url "https://github.com/robotology/robot-testing.git", :branch => "master"
   end
