@@ -10,6 +10,7 @@ class Yarp < Formula
   bottle do
     root_url "https://github.com/robotology/yarp/releases/download/v2.3.70"
     sha256 "1cd2b385a3d33b55e13fef61c8438507a94d4b6aaf9cc67d13228183a58a5bc7" => :sierra
+    sha256 "540b45f2ea8f112b7f32262752404a08baf9300959a52a80db14d4f9322b56b0" => :el_capitan
   end
 
   head do
@@ -26,8 +27,8 @@ class Yarp < Formula
   depends_on "jpeg"
   depends_on "homebrew/science/opencv" => :optional
   depends_on "qt" => :recommended
-  depends_on "ycm" => :recommended
-  depends_on "robot-testing" => :recommended
+  depends_on "robotology/formulae/ycm" => :recommended
+  depends_on "robotology/formulae/robot-testing" => :recommended
   if build.with? "bindings"
     depends_on "lua"
     depends_on "swig"
@@ -49,7 +50,11 @@ class Yarp < Formula
     ]
 
     args << "-DCREATE_GUIS:BOOL=TRUE" if build.with? "qt"
-    args << "-DENABLE_yarpmod_opencv_grabber:BOOL=TRUE" if build.with? "opencv"
+    if build.with? "opencv"
+      args << "-DENABLE_yarpmod_opencv_grabber:BOOL=TRUE" 
+    else
+      args << "-DCMAKE_DISABLE_FIND_PACKAGE_OpenCV:BOOL=TRUE"
+    end
     args << "-DYARP_COMPILE_RTF_ADDONS:BOOL=TRUE" if build.with? "robot-testing"
 
     if build.with? "bindings"

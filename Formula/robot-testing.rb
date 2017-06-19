@@ -11,6 +11,7 @@ class RobotTesting < Formula
     root_url "https://github.com/robotology/robot-testing/releases/download/v1.2.0"
     cellar :any
     sha256 "760b71849b83ab2f9075aef4df9594521373ece5863421ea5f3e693e1358bdf3" => :sierra
+    sha256 "91775498ec5723bfd819e6d9cbddbc6b3796df98be131f172a84c6dd1edfc0e6" => :el_capitan
   end
 
   head do
