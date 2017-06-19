@@ -3,13 +3,11 @@ class Yarp < Formula
   homepage "http://yarp.it"
 
   stable do
-    url "https://github.com/robotology/yarp/archive/v2.3.68.1.tar.gz"
-    sha256 "17eafeed8cc5ca37e3c003527ad60ca133314bd6e9b1455ec7b6f5dbfa95567c"
+    url "https://github.com/robotology/yarp/archive/v2.3.70.tar.gz"
+    sha256 "a44aaae8502946effed6d3284e70f90c4234a9c29da6229355607ee9b98fd223"
   end
 
   bottle do
-    root_url "https://github.com/robotology/yarp/releases/download/v2.3.68.1"
-    sha256 "cdfceec0da0766384b80d96d0d82b2822510e5584ae46ae5ed05748f8c161d7f" => :sierra
   end
 
   head do
@@ -17,9 +15,7 @@ class Yarp < Formula
   end
 
   option "without-qt5", "Build without GUI applications"
-  option "with-yarprun-log", "Build with LOG support for YARPRUN processes"
   option "with-bindings", "Build with binding (LUA, Python) support"
-  option "with-serial", "Build the serial/serialport devices"
 
   depends_on "pkg-config" => :build
   depends_on "cmake" => :build
@@ -27,7 +23,9 @@ class Yarp < Formula
   depends_on "ace"
   depends_on "jpeg"
   depends_on "homebrew/science/opencv" => :optional
-  depends_on "qt5" => :recommended
+  depends_on "qt" => :recommended
+  depends_on "ycm" => :recommended
+  depends_on "robot-testing" => :recommended
   if build.with? "bindings"
     depends_on "lua"
     depends_on "swig"
@@ -35,38 +33,33 @@ class Yarp < Formula
   end
 
   def install
-    args = std_cmake_args + %W[
-      -DCREATE_LIB_MATH=TRUE
-      -DCREATE_DEVICE_LIBRARY_MODULES=TRUE
-      -DCREATE_OPTIONAL_CARRIERS=TRUE
-      -DENABLE_yarpcar_mjpeg_carrier=TRUE
-      -DENABLE_yarpcar_rossrv_carrier=TRUE
-      -DENABLE_yarpcar_tcpros_carrier=TRUE
-      -DENABLE_yarpcar_xmlrpc_carrier=TRUE
-      -DENABLE_yarpcar_bayer_carrier=TRUE
-      -DENABLE_yarpcar_priority_carrier=TRUE
+    args = std_cmake_args + %w[
+      -DCREATE_LIB_MATH:BOOL=TRUE
+      -DCREATE_DEVICE_LIBRARY_MODULES:BOOL=TRUE
+      -DENABLE_YARPRUN_LOG:BOOL=TRUE
+      -DCREATE_OPTIONAL_CARRIERS:BOOL=TRUE
+      -DENABLE_yarpcar_mjpeg_carrier:BOOL=TRUE
+      -DENABLE_yarpcar_rossrv_carrier:BOOL=TRUE
+      -DENABLE_yarpcar_tcpros_carrier:BOOL=TRUE
+      -DENABLE_yarpcar_xmlrpc_carrier:BOOL=TRUE
+      -DENABLE_yarpcar_bayer_carrier:BOOL=TRUE
+      -DENABLE_yarpcar_priority_carrier:BOOL=TRUE
     ]
 
-    args << "-DCREATE_GUIS=TRUE" if build.with? "qt5"
-    args << "-DENABLE_YARPRUN_LOG=ON" if build.with? "yarprun-log"
-    args << "-DENABLE_yarpmod_opencv_grabber=ON" if build.with? "opencv"
+    args << "-DCREATE_GUIS:BOOL=TRUE" if build.with? "qt"
+    args << "-DENABLE_yarpmod_opencv_grabber:BOOL=TRUE" if build.with? "opencv"
+    args << "-DYARP_COMPILE_RTF_ADDONS:BOOL=TRUE" if build.with? "robot-testing"
 
     if build.with? "bindings"
-      args << "-DYARP_COMPILE_BINDINGS=ON"
-      args << "-DCREATE_LUA=ON"
-      args << "-DCREATE_PYTHON=ON"
+      args << "-DYARP_COMPILE_BINDINGS:BOOL=TRUE"
+      args << "-DCREATE_LUA:BOOL=TRUE"
+      args << "-DCREATE_PYTHON:BOOL=TRUE"
       args << "-DCMAKE_INSTALL_LUADIR=#{lib}/lua"
-    end
-
-    if build.with? "serial"
-      args << "-DENABLE_yarpmod_serial=ON"
-      args << "-DENABLE_yarpmod_serialport=ON"
     end
 
     system "cmake", *args
     system "make", "install"
     bash_completion.install "scripts/yarp_completion"
-
   end
 
   def caveats
@@ -75,10 +68,8 @@ class Yarp < Formula
 
       export YARP_DATA_DIRS=#{HOMEBREW_PREFIX}/share/yarp
     EOS
-    
-    if build.with? "bindings"
-        s += "  export LUA_CPATH=\";;;#{lib}/lua/?.so\""
-    end
+
+    s += "  export LUA_CPATH=\";;;#{lib}/lua/?.so\"" if build.with? "bindings"
     s
   end
 
