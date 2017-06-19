@@ -1,9 +1,14 @@
 class GazeboYarpPlugins < Formula
+  desc "Gazebo plugins for the YARP middleware"
   homepage "https://github.com/robotology/gazebo-yarp-plugins"
 
   stable do
-    url "https://github.com/robotology/gazebo-yarp-plugins/archive/v0.1.2.tar.gz"
-    sha256 "85fe3c1754b441c65e92f5c54149bc1dd1ed7c63365a413d2fad89236101d208"
+    url "https://github.com/robotology/gazebo-yarp-plugins/archive/v2.3.70.tar.gz"
+    sha256 "7711f996f9ddebdda2c77f04748aa7145540b2b87f797efa5db3cae926c64c1f"
+  end
+
+  bottle do
+    sha256 "e958e773443bfc175e068beb34cf78dad76782d8005f21686d4e99eaeed18a29" => :sierra
   end
 
   head do
@@ -13,22 +18,21 @@ class GazeboYarpPlugins < Formula
   ## Dependencies
   depends_on "cmake" => :build
   depends_on "pkg-config" => :build
-  option "without-yarp", "Don't use yarp from brew, but use the CMake facilities to located it (e.g. by manually specify the location with YARP_DIR environment variable)"
-  depends_on "robotology/cask/yarp" => :recommended
-  depends_on "gazebo5"
+  depends_on "robotology/formulae/yarp"
+  depends_on "gazebo8"
+  depends_on "homebrew/science/opencv" => :optional
 
   ## The install method.
   def install
-    # Now the sources (from `url`) are downloaded, hash-checked and
-    # Homebrew has changed into a temporary directory where the
-    # archive has been unpacked or the repository has been cloned.
-
-    # For Cmake, we have some necessary defaults in `std_cmake_args`:
-    mkdir "build" do
-      system "cmake", "..", *std_cmake_args
-      system "cmake", "." # this fixes an issue with gazebo cmake-config
-      system "make", "install"
+    args = std_cmake_args
+    if build.with? "opencv"
+      args << "-DGAZEBO_YARP_PLUGINS_HAS_OPENCV:BOOL=ON"
+    else
+      args << "-DGAZEBO_YARP_PLUGINS_HAS_OPENCV:BOOL=OFF"
     end
+
+    system "cmake", *args
+    system "make", "install"
   end
 
   test do
@@ -56,10 +60,8 @@ class GazeboYarpPlugins < Formula
       exit ${SUCCESS}
     EOS
     # To capture the output of a command, we use backtics:
-    system 'sh', (testpath/"test.sh")
+    system "sh", (testpath/"test.sh")
     shell_output("echo $?")
     ohai "Success"
   end
-
-
 end
