@@ -12,7 +12,7 @@ class GazeboYarpPlugins < Formula
   end
 
   head do
-    url "https://github.com/robotology/gazebo-yarp-plugins.git", :branch => "master"
+    url "https://github.com/robotology/gazebo-yarp-plugins.git", :branch => "devel"
   end
 
   ## Dependencies
