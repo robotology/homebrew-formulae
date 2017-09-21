@@ -3,14 +3,13 @@ class Yarp < Formula
   homepage "http://yarp.it"
 
   stable do
-    url "https://github.com/robotology/yarp/archive/v2.3.70.tar.gz"
-    sha256 "a44aaae8502946effed6d3284e70f90c4234a9c29da6229355607ee9b98fd223"
+    url "https://github.com/robotology/yarp/archive/v2.3.70.1.tar.gz"
+    sha256 "c693956aa76082bff18645a4a0cadf43d564c82fe518420e2b6c8410f716bf85"
   end
 
   bottle do
-    root_url "https://github.com/robotology/yarp/releases/download/v2.3.70"
-    sha256 "1cd2b385a3d33b55e13fef61c8438507a94d4b6aaf9cc67d13228183a58a5bc7" => :sierra
-    sha256 "540b45f2ea8f112b7f32262752404a08baf9300959a52a80db14d4f9322b56b0" => :el_capitan
+    root_url "https://github.com/robotology/yarp/releases/download/v2.3.70.1"
+    sha256 "f932056d3f1b2cac2cad6c8695f807e142bea0f1927e4507ec616ef5524ccbc9" => :sierra
   end
 
   head do
