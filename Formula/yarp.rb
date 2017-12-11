@@ -13,7 +13,7 @@ class Yarp < Formula
   end
 
   head do
-      url "https://github.com/robotology/yarp.git", :branch => "devel"
+      url "https://github.com/robotology/yarp.git", :branch => "master"
   end
 
   option "without-qt5", "Build without GUI applications"
