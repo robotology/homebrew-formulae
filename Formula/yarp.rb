@@ -50,7 +50,7 @@ class Yarp < Formula
 
     args << "-DCREATE_GUIS:BOOL=TRUE" if build.with? "qt"
     if build.with? "opencv"
-      args << "-DENABLE_yarpmod_opencv_grabber:BOOL=TRUE" 
+      args << "-DENABLE_yarpmod_opencv_grabber:BOOL=TRUE"
     else
       args << "-DCMAKE_DISABLE_FIND_PACKAGE_OpenCV:BOOL=TRUE"
     end
