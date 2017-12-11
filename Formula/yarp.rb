@@ -3,8 +3,8 @@ class Yarp < Formula
   homepage "http://yarp.it"
 
   stable do
-    url "https://github.com/robotology/yarp/archive/v2.3.70.1.tar.gz"
-    sha256 "c693956aa76082bff18645a4a0cadf43d564c82fe518420e2b6c8410f716bf85"
+    url "https://github.com/robotology/yarp/archive/v2.3.70.2.tar.gz"
+    sha256 "888c4d2d85e0d9a3da4c4a111ed96c77c35a2849ed9bf079d69b08941f40ea79"
   end
 
   bottle do
