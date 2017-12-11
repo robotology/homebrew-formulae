@@ -8,8 +8,8 @@ class Yarp < Formula
   end
 
   bottle do
-    root_url "https://github.com/robotology/yarp/releases/download/v2.3.70.1"
-    sha256 "f932056d3f1b2cac2cad6c8695f807e142bea0f1927e4507ec616ef5524ccbc9" => :sierra
+    root_url "https://github.com/robotology/yarp/releases/download/v2.3.70.2"
+    sha256 "d68bd7e09a45f3b066f1556c8016d3ad3b1f20ebd1c2b4868a75171aa14c0564" => :sierra
   end
 
   head do
