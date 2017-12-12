@@ -3,17 +3,17 @@ class Yarp < Formula
   homepage "http://yarp.it"
 
   stable do
-    url "https://github.com/robotology/yarp/archive/v2.3.70.1.tar.gz"
-    sha256 "c693956aa76082bff18645a4a0cadf43d564c82fe518420e2b6c8410f716bf85"
+    url "https://github.com/robotology/yarp/archive/v2.3.70.2.tar.gz"
+    sha256 "888c4d2d85e0d9a3da4c4a111ed96c77c35a2849ed9bf079d69b08941f40ea79"
   end
 
   bottle do
-    root_url "https://github.com/robotology/yarp/releases/download/v2.3.70.1"
-    sha256 "f932056d3f1b2cac2cad6c8695f807e142bea0f1927e4507ec616ef5524ccbc9" => :sierra
+    root_url "https://github.com/robotology/yarp/releases/download/v2.3.70.2"
+    sha256 "d68bd7e09a45f3b066f1556c8016d3ad3b1f20ebd1c2b4868a75171aa14c0564" => :sierra
   end
 
   head do
-      url "https://github.com/robotology/yarp.git", :branch => "devel"
+      url "https://github.com/robotology/yarp.git", :branch => "master"
   end
 
   option "without-qt5", "Build without GUI applications"
@@ -50,7 +50,7 @@ class Yarp < Formula
 
     args << "-DCREATE_GUIS:BOOL=TRUE" if build.with? "qt"
     if build.with? "opencv"
-      args << "-DENABLE_yarpmod_opencv_grabber:BOOL=TRUE" 
+      args << "-DENABLE_yarpmod_opencv_grabber:BOOL=TRUE"
     else
       args << "-DCMAKE_DISABLE_FIND_PACKAGE_OpenCV:BOOL=TRUE"
     end
