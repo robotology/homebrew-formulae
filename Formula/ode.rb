@@ -6,24 +6,13 @@ class Ode < Formula
   revision 2
   head "https://bitbucket.org/odedevs/ode/", :using => :hg
 
-  option "with-double-precision", "Compile ODE with double precision"
-  option "with-shared", "Compile ODE with shared library support"
-  option "with-x11", "Build the drawstuff library and demos"
-
-  deprecated_option "enable-double-precision" => "with-double-precision"
-  deprecated_option "enable-shared" => "with-shared"
-
   depends_on "autoconf" => :build
   depends_on "automake" => :build
   depends_on "libtool" => :build
   depends_on "pkg-config" => :build
-  depends_on :x11 => :optional
 
   def install
-    args = ["--prefix=#{prefix}"]
-    args << "--enable-double-precision" if build.with? "double-precision"
-    args << "--enable-shared" if build.with? "shared"
-    args << "--with-demos" if build.with? "x11"
+    args = ["--prefix=#{prefix}", "--enable-double-precision", "--enable-shared", "--enable-libccd"]
 
     inreplace "bootstrap", "libtoolize", "glibtoolize"
     system "./bootstrap"
