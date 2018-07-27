@@ -24,7 +24,7 @@ class Yarp < Formula
   depends_on "eigen" => :build
   depends_on "ace"
   depends_on "jpeg"
-  depends_on "homebrew/science/opencv" => :optional
+  depends_on "homebrew/core/opencv" => :optional
   depends_on "qt" => :recommended
   depends_on "robotology/formulae/ycm" => :recommended
   depends_on "robotology/formulae/robot-testing" => :recommended
