@@ -3,14 +3,14 @@ class Ycm < Formula
   homepage "https://robotology.github.io/ycm"
 
   stable do
-    url "https://github.com/robotology/ycm/releases/download/v0.10.2/ycm-0.10.2-offline.tar.gz"
-    sha256 "25392d9bcf31def724f839b9347c958b92998743f84e63adc8843642439e988a"
+    url "https://github.com/robotology/ycm/releases/download/v0.10.3/ycm-0.10.3-offline.tar.gz"
+    sha256 "77e3634200e43db354b955ee1f123066649f963718b9a607ce48e9a3b3bd687d"
   end
 
   bottle do
-    root_url "https://github.com/robotology/ycm/releases/download/v0.10.2"
+    root_url "https://github.com/robotology/ycm/releases/download/v0.10.3"
     cellar :any_skip_relocation
-    sha256 "dbd241225a885d812781b0cf1ea6c830b7f596ce4fac6309132e659c92cf9003" => :mojave
+    sha256 "a4c120d4ff189f41b09631822dd44e8fc510fe76418b91836aef049204168691" => :mojave
   end
 
   head do
