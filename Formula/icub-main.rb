@@ -24,7 +24,7 @@ class IcubMain < Formula
   depends_on "qt"
   depends_on "gsl"
   depends_on "opencv" => :optional
-  depends_on "dartsim/dart/ipopt" => :optional
+  depends_on "ipopt" => :optional
 
   def install
     args = std_cmake_args + %w[
