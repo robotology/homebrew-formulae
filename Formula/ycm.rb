@@ -3,8 +3,8 @@ class Ycm < Formula
   homepage "https://robotology.github.io/ycm"
 
   stable do
-    url "https://github.com/robotology/ycm/releases/download/v0.12.0/ycm-0.12.0-offline.tar.gz"
-    sha256 "c8e7b25114c598b0c50b8b4ed748667c724923dba90c3272ef24ce1a05a8d046"
+    url "https://github.com/robotology/ycm/releases/download/v0.12.1/ycm-0.12.1-offline.tar.gz"
+    sha256 "b1793f31e2b9c68c4a1d69a60fe4b8ae6d1d421c268e7a42bf9fd6c157ed7697"
   end
 
   head do
